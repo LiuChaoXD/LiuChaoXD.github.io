@@ -30,7 +30,6 @@ classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
     C --&gt; D(Feed Forward):::red
     D --&gt; E(Layer Norm):::green
     E --&gt; F([Output])
-  
 
 LLM如何generate text或者completion
 
@@ -112,7 +111,6 @@ classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
     C --&gt; D(Feed Forward):::red
     D --&gt; E(Layer Norm):::green
     E --&gt; F([Output])
-  
 
 LLM如何generate text或者completion
 
@@ -152,7 +150,6 @@ classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
     C --&gt; D(Feed Forward):::red
     D --&gt; E(Layer Norm):::green
     E --&gt; F([Output])
-  
 
 LLM如何generate text或者completion
 
@@ -377,7 +374,7 @@ logits就是概率，主要是通过softmax函数去将最后一层的输出转�
 <li>Feed-Forward Layers：用来转化自注意力层的输出</li>
 <li>Layer Normalization：用来稳定学习</li>
 </ol>
-<pre class="mermaid">%%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'arial'}}}%%
+<div class="mermaid">%%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'arial'}}}%%
 graph LR
 classDef blue fill:#2374f7,stroke:#000,stroke-width:2px,color:#fff
 classDef pink fill:#eb3dd6,stroke:#000,stroke-width:2px,color:#fff
@@ -390,9 +387,7 @@ classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
     B --> C(Layer Norm):::orange
     C --> D(Feed Forward):::red
     D --> E(Layer Norm):::green
-    E --> F([Output])
-  </pre
->
+    E --> F([Output])</div>
 
 <h3 id="llm如何generate-text或者completion">LLM如何generate text或者completion<a hidden class="anchor" aria-hidden="true" href="#llm如何generate-text或者completion">#</a></h3>
 <ul>
@@ -486,7 +481,7 @@ $$</p>
 </ol>
 <h2 id="语言模型中的attention">语言模型中的Attention<a hidden class="anchor" aria-hidden="true" href="#语言模型中的attention">#</a></h2>
 <h3 id="self-attention-内部">Self-Attention 内部<a hidden class="anchor" aria-hidden="true" href="#self-attention-内部">#</a></h3>
-<pre class="mermaid">%%{init: {'theme':'base'}}%%
+<div class="mermaid">%%{init: {'theme':'base'}}%%
 graph TD
 classDef blue fill:#2374f7,stroke:#000,stroke-width:2px,color:#fff
 classDef pink fill:#eb3dd6,stroke:#000,stroke-width:2px,color:#fff
@@ -502,9 +497,7 @@ classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
     D --> G
     E --> G
     F --> G
-    G --> H([Output])
-  </pre
->
+    G --> H([Output])</div>
 
 <p>self-attention中有多头机制，那么这里就要假设两种情况：</p>
 <ol>
@@ -589,7 +582,7 @@ $$</p>
 <li>interaction strength： 所有层的attention score</li>
 </ol>
 <p>粗略的调整可以看如下的图</p>
-<pre class="mermaid">%%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'arial'}}}%%
+<div class="mermaid">%%{init: {'theme': 'base', 'themeVariables': { 'fontFamily': 'arial'}}}%%
 
 graph LR
 classDef blue fill:#2374f7,stroke:#000,stroke-width:2px,color:#fff
@@ -633,12 +626,10 @@ classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
     linkStyle 0,2,3,7,8,9 stroke:#FF0000,color:#FF0000
     linkStyle 1,4,5,6 stroke:#0000FF,color:#0000FF,stroke-dasharray: 3 3
     
-    
-  </pre
->
+    </div>
 
 <h3 id="temperature-系数调整">Temperature 系数调整<a hidden class="anchor" aria-hidden="true" href="#temperature-系数调整">#</a></h3>
-<pre class="mermaid">%%{init: {'theme':'base'}}%%
+<div class="mermaid">%%{init: {'theme':'base'}}%%
 graph TD
 classDef blue fill:#2374f7,stroke:#000,stroke-width:2px,color:#fff
 classDef pink fill:#eb3dd6,stroke:#000,stroke-width:2px,color:#fff
@@ -648,9 +639,7 @@ classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
     A([Logits Uncertainty]):::blue  --> D[Temperature]:::green
     B([Attention Uncertainty]):::blue --> D
     C([Agreement]):::blue --> D
-    D --> E([Final Temperature]):::orange
-  </pre
->
+    D --> E([Final Temperature]):::orange</div>
 
 <p>温度系数的调整策略： $T = T_{base} * (1 + 0.3 * U_{logits} + 0.2 * U_{attn} - 0.2 * A)$</p>
 <ul>
@@ -693,7 +682,7 @@ classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
 </div>
 </div><h2 id="implementation">Implementation<a hidden class="anchor" aria-hidden="true" href="#implementation">#</a></h2>
 <p>entropix会在最终采样前计算各种metrics然后做出适应性的调整，用来改变或者增强采样的确定性。如下图所示</p>
-<pre class="mermaid">%%{init: {'theme':'base'}}%%
+<div class="mermaid">%%{init: {'theme':'base'}}%%
 graph TD
 classDef blue fill:#2374f7,stroke:#000,stroke-width:2px,color:#fff
 classDef pink fill:#eb3dd6,stroke:#000,stroke-width:2px,color:#fff
@@ -710,9 +699,7 @@ classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
     D --> H
     E --> H
     F --> H
-    G --> H
-  </pre
->
+    G --> H</div>
 
 <p><strong>注意这里的E 和V表示的是根据对next token预测的logits，所获得的entropy和varentropy。即不同策略的trigger是通过logits的熵和熵的方差去做的。然后trigger不同的strategy，采用不同的采样调整策略。</strong></p>
 <p>为了方便理解再次将前文粘贴到这里</p>

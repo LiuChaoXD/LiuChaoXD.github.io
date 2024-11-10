@@ -22,7 +22,7 @@
 &lt;li&gt;Feed-Forward Layers：用来转化自注意力层的输出&lt;/li&gt;
 &lt;li&gt;Layer Normalization：用来稳定学习&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre class=&#34;mermaid&#34;&gt;%%{init: {&#39;theme&#39;: &#39;base&#39;, &#39;themeVariables&#39;: { &#39;fontFamily&#39;: &#39;arial&#39;}}}%%
+&lt;div class=&#34;mermaid&#34;&gt;%%{init: {&#39;theme&#39;: &#39;base&#39;, &#39;themeVariables&#39;: { &#39;fontFamily&#39;: &#39;arial&#39;}}}%%
 graph LR
 classDef blue fill:#2374f7,stroke:#000,stroke-width:2px,color:#fff
 classDef pink fill:#eb3dd6,stroke:#000,stroke-width:2px,color:#fff
@@ -35,9 +35,7 @@ classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
     B --&gt; C(Layer Norm):::orange
     C --&gt; D(Feed Forward):::red
     D --&gt; E(Layer Norm):::green
-    E --&gt; F([Output])
-  &lt;/pre
-&gt;
+    E --&gt; F([Output])&lt;/div&gt;
 
 &lt;h3 id=&#34;llm如何generate-text或者completion&#34;&gt;LLM如何generate text或者completion&lt;/h3&gt;
 &lt;ul&gt;
