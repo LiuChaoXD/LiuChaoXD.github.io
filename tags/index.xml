@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on ChaosThoughts.com</title>
+    <link>https://LiuChaoXD.github.io/tags/</link>
+    <description>Recent content in Tags on ChaosThoughts.com</description>
+    <generator>Hugo -- 0.136.5</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 Nov 2024 22:30:44 +0800</lastBuildDate>
+    <atom:link href="https://LiuChaoXD.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LLM</title>
+      <link>https://LiuChaoXD.github.io/tags/llm/</link>
+      <pubDate>Mon, 04 Nov 2024 22:30:44 +0800</pubDate>
+      <guid>https://LiuChaoXD.github.io/tags/llm/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

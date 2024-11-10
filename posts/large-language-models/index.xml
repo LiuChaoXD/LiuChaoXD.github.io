@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Blogs for Large Language Models on ChaosThoughts.com</title>
+    <link>https://LiuChaoXD.github.io/posts/large-language-models/</link>
+    <description>Recent content in Blogs for Large Language Models on ChaosThoughts.com</description>
+    <generator>Hugo -- 0.136.5</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 Nov 2024 22:30:44 +0800</lastBuildDate>
+    <atom:link href="https://LiuChaoXD.github.io/posts/large-language-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Entropy Based Sampling and Parallel CoT Decoding</title>
+      <link>https://LiuChaoXD.github.io/posts/large-language-models/entropix/</link>
+      <pubDate>Mon, 04 Nov 2024 22:30:44 +0800</pubDate>
+      <guid>https://LiuChaoXD.github.io/posts/large-language-models/entropix/</guid>
+      <description>&lt;p&gt;最近比较火的通过另一种采样方法提高LLM的Reasoning ability或者幻觉现象： &lt;strong&gt;Entropix&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;基本概念&#34;&gt;基本概念&lt;/h2&gt;
+&lt;p&gt;现在大多数流行的LLM架构是基于Transformer architecture的。这种架构通常来讲包含一下几个关键部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Embedding Layer：用来将输入的token转化为vector&lt;/li&gt;
+&lt;li&gt;Self-Attention Layers：自注意力层，就是网络自动学习用户输入一段文本中，所有文本之间的关系&lt;/li&gt;
+&lt;li&gt;Feed-Forward Layers：用来转化自注意力层的输出&lt;/li&gt;
+&lt;li&gt;Layer Normalization：用来稳定学习&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;%%{init: {&#39;theme&#39;: &#39;base&#39;, &#39;themeVariables&#39;: { &#39;fontFamily&#39;: &#39;arial&#39;}}}%%
+graph LR
+classDef blue fill:#2374f7,stroke:#000,stroke-width:2px,color:#fff
+classDef pink fill:#eb3dd6,stroke:#000,stroke-width:2px,color:#fff
+classDef orange fill:#fc822b,stroke:#000,stroke-width:2px,color:#fff
+classDef red fill:#ed2633,stroke:#000,stroke-width:2px,color:#fff
+classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
+
+    A([Input]) --&gt;  G(Embedding):::blue
+    G --&gt; B(Self-Attention):::pink
+    B --&gt; C(Layer Norm):::orange
+    C --&gt; D(Feed Forward):::red
+    D --&gt; E(Layer Norm):::green
+    E --&gt; F([Output])
+  &lt;/pre
+&gt;
+
+&lt;h3 id=&#34;llm如何generate-text或者completion&#34;&gt;LLM如何generate text或者completion&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;step 1:&lt;/strong&gt; input processing（输入处理），即将input text先进行tokenization，然后通过embedding将其映射到vector空间中&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;step 2&lt;/strong&gt;：Forward processing（前向处理），即经过embedding后通过self-attention，layer norm，feed-forward 等，最终获得所有下一个可能token的logits&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;step 3&lt;/strong&gt;: Sampling（采样），这里就是该篇文章技术的关注点。回过头来，现在大多数能影响采样结果的参数有temperature（温度系数），top-p，top-k&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;step 4&lt;/strong&gt;: Repeat （重复上述步骤）：即当采样好了下一个token后，会将该token添加到input text的末尾，即此时的输入变为了input text + “next token”，然后采样“next next token”&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;logits的作用&#34;&gt;Logits的作用&lt;/h3&gt;
+&lt;p&gt;logits就是概率，主要是通过softmax函数去将最后一层的输出转化为总和为1的概率。即&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
